@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//默认页面
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+//设置默认首页
+Route::any('/','Admin\Index@login');
 
 //后台分组 并且加 前缀amdin
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
