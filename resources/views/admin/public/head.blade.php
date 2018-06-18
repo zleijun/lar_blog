@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{isset($title)?$title:'梦中程序员管理后台'}}</title>
+    <title>{{isset($title)?$title:'博客-管理后台'}}</title>
     <link rel="shortcut icon" href="/static/admin/img/logo.jpg" type="image/x-icon">
     <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/static/admin/css/font-awesome.min.css" rel="stylesheet" />
@@ -24,7 +24,7 @@
                 <!-- Navbar Barnd -->
                 <div class="navbar-header pull-left">
                     <a href="#" class="navbar-brand">
-                        <small style="line-height: 40px;">梦中程序员管理后台</small>
+                        <small style="line-height: 40px;">博客-管理后台</small>
                     </a>
                 </div>
                 <!-- /Navbar Barnd -->
