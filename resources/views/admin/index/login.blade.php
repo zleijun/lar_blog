@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>程序员管理后台</title>
+    <title>博客-管理后台</title>
     <link rel="shortcut icon" href="/static/admin/img/logo.jpg" type="image/x-icon">
     <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/static/admin/css/font-awesome.min.css" rel="stylesheet" />
@@ -15,16 +15,16 @@
     <div class="login-container">
         <form action="" onsubmit="return checkForm()">
         	<div class="loginbox bg-white">
-	            <div class="loginbox-title">登录</div>
+	            <div class="loginbox-title">博客-系统管理后台</div>
 	            
 	            <div class="loginbox-or">
 	                <div class="or-line"></div>
 	            </div>
 	            <div class="loginbox-textbox">
-	                <input type="text" class="form-control" name="username" placeholder="用户名" />
+	                <input type="text" class="form-control" name="username" placeholder="管理员账户" />
 	            </div>
 	            <div class="loginbox-textbox">
-	                <input type="password" class="form-control" name="password" placeholder="密码" />
+	                <input type="password" class="form-control" name="password" placeholder="管理员密码" />
 	            </div>
 	            <div class="loginbox-forgot">
 	                <a href="{{url('admin/forget')}}">忘记密码?</a>
