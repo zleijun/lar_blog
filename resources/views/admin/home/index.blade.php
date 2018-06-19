@@ -40,8 +40,8 @@
         							<td>{{request()->server()['SERVER_NAME']}}</td>
         						</tr>
         						<tr>
-        							<td>服务器IP地址</td>
-        							<td>{{request()->server()['SERVER_ADDR']}}</td>
+        							<td>服务器版本</td>
+        							<td>{{request()->server()['SERVER_SOFTWARE']}}</td>
         						</tr>
         						<tr>
         							<td>服务器端口</td>
