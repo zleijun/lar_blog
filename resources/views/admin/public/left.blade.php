@@ -15,12 +15,12 @@
     		</a>
     		<ul class="submenu">
     			<li>
-    				<a href="catelist.html">
+    				<a href="{{url('admin/coulmns')}}">
     					<span class="menu-text">栏目列表</span>
     				</a>
     			</li>
     			<li>
-    				<a href="#">
+    				<a href="{{url('admin/addcoulmn')}}">
     					<span class="menu-text">栏目添加</span>
     				</a>
     			</li>
@@ -34,12 +34,12 @@
     		</a>
     		<ul class="submenu">
     			<li>
-    				<a href="#">
+    				<a href="{{url('admin/articles')}}">
     					<span class="menu-text">文章列表</span>
     				</a>
     			</li>
     			<li>
-    				<a href="#">
+    				<a href="{{url('admin/addarticle')}}">
     					<span class="menu-text">文章添加</span>
     				</a>
     			</li>

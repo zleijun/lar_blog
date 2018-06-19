@@ -62,7 +62,28 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 		//管理员禁用开启操作
 		Route::match(['post'],'memberstatus','Member@memberstatus');
 
-		
+		//栏目列表
+		Route::match(['get'],'coulmns','Coulmn@coulmns');
+		//栏目添加
+		Route::match(['get','post'],'addcoulmn','Coulmn@addcoulmn');
+		//栏目修改
+		Route::match(['get','post'],'cateedit/{id?}','Coulmn@cateedit');
+		//栏目删除
+		Route::match(['post'],'catedel','Coulmn@catedel');
+
+
+		//栏目列表
+		Route::match(['get'],'articles','Article@articles');
+		//栏目添加
+		Route::match(['get','post'],'addarticle','Article@addarticle');
+		//栏目修改
+		Route::match(['get','post'],'cateedit/{id?}','Article@articleedit');
+		//栏目删除
+		Route::match(['post'],'articledel','Article@articleel');
+		//状态值修改(置顶、是否展示)
+		Route::match(['post'],'articlestate','Article@artstatus');
+
+
 	});
 
 	
