@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>博客-管理后台</title>
+    <title>博客-个人管理后台</title>
     <link rel="shortcut icon" href="/static/admin/img/logo.jpg" type="image/x-icon">
     <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/static/admin/css/font-awesome.min.css" rel="stylesheet" />
@@ -15,7 +15,7 @@
     <div class="login-container">
         <form action="" onsubmit="return checkForm()">
         	<div class="loginbox bg-white">
-	            <div class="loginbox-title">博客-系统管理后台</div>
+	            <div class="loginbox-title">博客-个人管理后台</div>
 	            
 	            <div class="loginbox-or">
 	                <div class="or-line"></div>
