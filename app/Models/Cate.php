@@ -16,6 +16,14 @@ class Cate extends Model
 	//表示这些字段存时间戳的
 	protected $dates = ['created_at','updated_at','deleted_at'];
 
+    /**
+     * 关联文章表，当删除栏目时删除文章
+     * @return [type] [description]
+     */
+    public function articles(){
+        return $this->hasMany('App\\Models\\Article','cate_id','id');
+    }
+
 	//栏目添加处理
     public function register($data){
     	$rule = [

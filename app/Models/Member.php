@@ -16,6 +16,14 @@ class Member extends Model
 	//表示这些字段存时间戳的
 	protected $dates = ['created_at','updated_at','deleted_at'];
 
+    /**
+     * 关联文章表，当删除作者时删除文章
+     * @return [type] [description]
+     */
+    public function articles(){
+        return $this->hasMany('App\\Models\\Article','member_id','id');
+    }
+
 	//会员注册处理
     public function register($data){
     	$rule = [

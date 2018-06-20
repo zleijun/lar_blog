@@ -74,16 +74,19 @@ class Coulmn extends Controller
     	return view('admin.coulmn.coulmnedit',['coulmninfo'=>$result]);
     }
 
-    //删除栏目
+    //删除栏目(注意：删除栏目后 也要删除栏目下的文章)
     public function catedel(){
     	request()->isMethod('post')?true:exit;
 
-    	$resule = Cate::find(request('id'));
-    	$resule->delete();
-    	if($resule){
+    	$resule = Cate::with('articles')->find(request('id'));
+        foreach ($resule->articles as $vo) {
+            $vo->delete();
+        }
+    	$res = $resule->delete();
+    	if($res){
 			$msg = [
 				'code'=>1,
-				'msg'=>'修改成功',
+				'msg'=>'删除成功',
 			];
 		}else{
 			$msg = [

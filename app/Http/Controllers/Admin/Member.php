@@ -78,12 +78,15 @@ class Member extends Controller
     public function memberdel(){
     	request()->isMethod('post')?true:exit;
 
-    	$resule = MemberModel::find(request('id'));
-    	$resule->delete();
+    	$resule = MemberModel::with('articles')->find(request('id'));
+        foreach ($resule->articles as $vo) {
+            $vo->delete();
+        }
+    	$res = $resule->delete();
     	if($resule){
 			$msg = [
 				'code'=>1,
-				'msg'=>'修改成功',
+				'msg'=>'删除成功',
 			];
 		}else{
 			$msg = [
