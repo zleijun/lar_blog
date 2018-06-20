@@ -88,7 +88,7 @@ class Article extends Controller
     	return view('admin.article.articleedit',$viewData);
     }
 
-    //删除会员
+    //删除文章
     public function articleel(){
     	request()->isMethod('post')?true:exit;
 

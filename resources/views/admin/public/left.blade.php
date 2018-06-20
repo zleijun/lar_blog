@@ -45,6 +45,12 @@
     			</li>
     		</ul>
     	</li>
+        <li>
+            <a href="{{url('admin/commentlists')}}">
+                <i class="menu-icon glyphicon glyphicon-pencil"></i>
+                <span class="menu-text">评论管理</span>
+            </a>
+        </li>
     	<li>
     		<a href="#" class="menu-dropdown">
     			<i class="menu-icon glyphicon glyphicon glyphicon-user"></i>

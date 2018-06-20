@@ -85,6 +85,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 		//是否推荐
 		Route::match(['post'],'articletop','Article@articletop');
 
+		//评论列表
+		Route::match(['get'],'commentlists','Comment@commentlists');
+		//评论删除
+		Route::match(['post'],'commentdel','Comment@commentdel');
+
 	});
 
 	
