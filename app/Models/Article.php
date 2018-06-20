@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Validation\Rule;
 use Validator;
 class Article extends Model
 {
@@ -34,25 +35,23 @@ class Article extends Model
 	//文章添加处理
     public function register($data){
     	$rule = [
-    		'username'=>'bail|required|unique:admins|max:50',
-    		'password'=>'required',
-    		'nickname'=>'required',
-    		'email'=>'bail|required|email|unique:admins|max:50',
-    		'compassword'=>'required|same:password'
+    		'title'=>'bail|required|unique:articles|max:50',
+    		'tags'=>'required',
+    		'member_id'=>'required',
+    		'cate_id'=>'required',
+            'desc'=>'required',
+            'content'=>'required'
     	];
 
     	$msg = [
-    		'username.required'=>'请填写账户',
-    		'username.unique'=>'账户已存在',
-    		'username.max'=>'账户过长',
-    		'password.required'=>'请填写密码',
-    		'nickname.required'=>'请填写昵称',
-    		'email.required'=>'请填写邮箱',
-            'email.email'=>'邮箱格式不正确',
-    		'email.unique'=>'邮箱已存在',
-    		'email.max'=>'邮箱过长',
-    		'compassword.required'=>'请填写确认密码',
-    		'compassword.same'=>'两次密码不相同'
+    		'title.required'=>'请填写标题',
+            'title.unique'=>'标题已存在',
+            'title.max'=>'标题过长',
+    		'tags.unique'=>'请填写标签',
+    		'member_id.required'=>'请选择发布人',
+    		'cate_id.required'=>'请选择栏目',
+            'desc.required'=>'请填写文章概要',
+            'content.required'=>'请填写内容'
     	];
 
     	$validator = Validator::make($data,$rule,$msg);
@@ -77,35 +76,45 @@ class Article extends Model
     //文章信息修改
     public function editinfo($data){
         $rule = [
-            'id'=>'required',
-            'password'=>'required',
-            'nickname'=>'required',
-            'oldpwd'=>'required'
+            // 'title'=>'bail|required|unique:articles|max:50',
+            'title'=>[
+                'bail','required','max:50',
+                Rule::unique('articles')->ignore($data['id']),
+            ],
+            'tags'=>'required',
+            'member_id'=>'required',
+            'cate_id'=>'required',
+            'desc'=>'required',
+            'content'=>'required'
         ];
 
         $msg = [
-            'id.required'=>'错误操作',
-            'password.required'=>'请填写新密码',
-            'nickname.required'=>'请填写昵称',
-            'oldpwd.required'=>'请填写旧密码',
+            'title.required'=>'请填写标题',
+            'title.unique'=>'标题已存在',
+            'title.max'=>'标题过长',
+            'tags.unique'=>'请填写标签',
+            'member_id.required'=>'请选择发布人',
+            'cate_id.required'=>'请选择栏目',
+            'desc.required'=>'请填写文章概要',
+            'content.required'=>'请填写内容'
         ];
         $validator = Validator::make($data,$rule,$msg);
         if($validator->fails()){
             //验证失败
             $data = ['code'=>0,'msg'=>$validator->errors()->first()];
         }else{
-            $userinfo = $this->find($data['id']);
-            if($userinfo['password'] == $data['oldpwd']){
-                $userinfo->password = $data['password'];
-                $userinfo->nickname = $data['nickname'];
-                $result = $userinfo->save();
-                if($result){
-                    $data = ['code'=>1,'msg'=>'修改成功!'];
-                }else{
-                    $data = ['code'=>0,'msg'=>'修改失败,请重试!'];
-                }
+            $articlesModel = $this->find($data['id']);
+            $articlesModel->title = $data['title'];
+            $articlesModel->tags = $data['tags'];
+            $articlesModel->member_id = $data['member_id'];
+            $articlesModel->cate_id = $data['cate_id'];
+            $articlesModel->desc = $data['desc'];
+            $articlesModel->content = $data['content'];
+            $result = $articlesModel->save();
+            if($result){
+                $data = ['code'=>1,'msg'=>'修改成功!'];
             }else{
-                $data = ['code'=>0,'msg'=>'原密码错误,请重新输入!'];
+                $data = ['code'=>0,'msg'=>'修改失败,请重试!'];
             }
         }
         return $data;

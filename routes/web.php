@@ -80,9 +80,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 		Route::match(['get','post'],'cateedit/{id?}','Article@articleedit');
 		//栏目删除
 		Route::match(['post'],'articledel','Article@articleel');
-		//状态值修改(置顶、是否展示)
+		//上下架修改
 		Route::match(['post'],'articlestate','Article@artstatus');
-
+		//是否推荐
+		Route::match(['post'],'articletop','Article@articletop');
 
 	});
 

@@ -59,19 +59,19 @@
         								</th>
         								<td>
         									@if($vo->is_top == 1)
-    											<a href="#" class="btn btn-warning btn-xs user_datas" user-status="{{$vo->status}}">取消推荐</a>
+    											<a href="#" class="btn btn-warning btn-xs user_datas" state-type='1' user-status="{{$vo->is_top}}">取消推荐</a>
         									@else
-        										<a href="#" class="btn btn-success btn-xs user_datas" user-status="{{$vo->status}}">推荐</a>
+        										<a href="#" class="btn btn-success btn-xs user_datas" state-type='1' user-status="{{$vo->is_top}}">推荐</a>
         									@endif
 
     										@if($vo->status == 1)
-    											<a href="#" class="btn btn-warning btn-xs user_datas" user-status="{{$vo->status}}">下架</a>
+    											<a href="#" class="btn btn-warning btn-xs user_datas" state-type='2' user-status="{{$vo->status}}">下架</a>
         									@else
-        										<a href="#" class="btn btn-success btn-xs user_datas" user-status="{{$vo->status}}">上架</a>
+        										<a href="#" class="btn btn-success btn-xs user_datas" state-type='2' user-status="{{$vo->status}}">上架</a>
         									@endif
 
         									<a href="{{url('admin/cateedit',['id'=>$vo->id])}}" class="btn btn-azure btn-xs">编辑</a>
-        									<a href="javascript:;" class="btn btn-danger btn-xs admin-del">删除</a>
+        									<a href="javascript:;" class="btn btn-danger btn-xs article-del">删除</a>
         								</td>
         							</tr>
         							@empty
@@ -91,23 +91,28 @@
 @include('admin.public.footer')
 <script type="text/javascript">
 	$(function(){
-		//禁用、启用
+		//上下架|是否推荐修改
 		$('.user_datas').click(function(){
 			var thisss = $(this);
 			var userid = thisss.parents('tr').attr('userData');
 			var userStats = thisss.attr('user-status');
-			var msgs = userStats?'确定是否禁用?':'确定是否开启';
+            var statestype = thisss.attr('state-type');
+			var msgs = '是否确认';
 			layer.confirm(msgs,{
 				title:'确认此操作',
 				icon:'3',
 
 			},function(index){
 				layer.close(index);
-
+                if(statestype==1){
+                    var datas = "id="+userid+"&is_top="+userStats;
+                }else{
+                    var datas = "id="+userid+"&status="+userStats;
+                }
 				$.ajax({
 	        		url:"{{url('admin/articlestate')}}",
 	        		type:'post',
-	        		data:{id:userid,status:userStats},
+	        		data:datas,
 	        		dataType:'json',
 	        		success:function(data){
 	        			if(data.code == 1){
@@ -131,7 +136,7 @@
 		})
 
         //删除操作
-        $('.admin-del').click(function(){
+        $('.article-del').click(function(){
             var thisss = $(this);
             var userid = thisss.parents('tr').attr('userData');
 

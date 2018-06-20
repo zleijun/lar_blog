@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Member;
+use App\Models\Cate;
 use App\Models\Article as ArticleModel;
 
 class Article extends Controller
@@ -19,13 +21,13 @@ class Article extends Controller
     	return view('admin.article.articles',$viewData);
     }
 
-    //添加会员
+    //文章添加
     public function addarticle(){
 
     	if(request()->isMethod('post')){
-    		$data = request()->only('title','tags','nickname','email','compassword');
-    		$MemberModel = new MemberModel();
-    		$resule = $MemberModel->register($data);
+    		$data = request()->only('title','tags','member_id','cate_id','desc','content');
+    		$ArticleModel = new ArticleModel();
+    		$resule = $ArticleModel->register($data);
     		if($resule['code']){
     			$msg = [
     				'code'=>1,
@@ -39,19 +41,24 @@ class Article extends Controller
     				'url'=>'',
     			];
     		}
-
     		return $msg;
     	}
 
-    	return view('admin.article.addarticle');
+        $memberlists = Member::all(['id','nickname']);
+        $catelists = Cate::all(['id','catename']);
+        $viewData = [
+            'memberlists'=>$memberlists,
+            'catelists'=>$catelists
+        ];
+    	return view('admin.article.addarticle',$viewData);
     }
 
-    //会员编辑
+    //文章编辑
     public function articleedit(){
     	
     	$ArticleModel = new ArticleModel();
     	if(request()->isMethod('post')){
-    		$data = request()->only('password','nickname','oldpwd','id');
+    		$data = request()->only('id','title','tags','member_id','cate_id','desc','content');
     		$resule = $ArticleModel->editinfo($data);
     		if($resule['code']){
     			$msg = [
@@ -70,15 +77,22 @@ class Article extends Controller
     	}
 
     	$result = $ArticleModel->find(request('id'));
+        $memberlists = Member::all(['id','nickname']);
+        $catelists = Cate::all(['id','catename']);
+        $viewData = [
+            'memberlists'=>$memberlists,
+            'catelists'=>$catelists,
+            'articleinfo'=>$result
+        ];
 
-    	return view('admin.article.articleedit',['memberinfo'=>$result]);
+    	return view('admin.article.articleedit',$viewData);
     }
 
     //删除会员
     public function articleel(){
     	request()->isMethod('post')?true:exit;
 
-    	$resule = MemberModel::find(request('id'));
+    	$resule = ArticleModel::find(request('id'));
     	$resule->delete();
     	if($resule){
 			$msg = [
@@ -94,16 +108,22 @@ class Article extends Controller
 		return $msg;
     }
 
-    //会员禁用或开启操作
+    //上架下架|是否推荐操作
     public function artstatus(){
     	request()->isMethod('post')?true:exit;
 
-    	$data =  request()->only(['id','status']);
-    	$memberInfo = MemberModel::find($data['id']);
-    	$memberInfo->status = $data['status']?'0':'1';
-    	$result = $memberInfo->save();
+    	$data =  request()->only(['id','status','is_top']);
+    	$articleInfo = ArticleModel::find($data['id']);
+        if(isset($data['status'])){
+            $articleInfo->status = $data['status']?'0':'1';
+        }elseif(isset($data['is_top'])){
+            $articleInfo->is_top = $data['is_top']?'0':'1';
+        }else{
+            return ['code'=>0,'msg'=>'错误操作'];
+        }
+    	$result = $articleInfo->save();
     	if($result){
-    		return ['code'=>1,'msg'=>'操作成功','url'=>url('admin/memberlists')];
+    		return ['code'=>1,'msg'=>'操作成功','url'=>url('admin/articles')];
     	}else{
     		return ['code'=>0,'msg'=>'修改失败'];
     	}
