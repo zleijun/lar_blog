@@ -16,8 +16,18 @@
 //     return view('welcome');
 // });
 
-//设置默认首页
+//设置系统默认首页
 Route::any('/','Admin\Index@login');
+
+
+//前台home
+Route::group(['namespace'=>'Home'],function(){
+
+	//前台首页
+	Route::match(['get'],'index','Index@index');
+
+
+});
 
 //后台分组 并且加 前缀amdin
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
@@ -92,8 +102,5 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
 		//系统设置、修改
 		Route::match(['get','post'],'systeminfo','System@systeminfo');
-
 	});
-
-	
 });

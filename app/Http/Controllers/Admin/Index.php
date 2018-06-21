@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\helpers;
 use App\Http\Controllers\Controller;
-
 class Index extends Controller
 {
     //登录
@@ -39,8 +40,8 @@ class Index extends Controller
     	}
 
         //如果已经登录了则跳转
-        if(!session()->has('admin')){
-            return redriect('admin/index');
+        if(session()->has('admin')){
+            return redirect('admin/index');
         }
 
     	return view('admin.index.login');
