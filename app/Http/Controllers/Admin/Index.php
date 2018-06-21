@@ -37,6 +37,12 @@ class Index extends Controller
 
     		return $msg;
     	}
+
+        //如果已经登录了则跳转
+        if(!session()->has('admin')){
+            return redriect('admin/index');
+        }
+
     	return view('admin.index.login');
     }
 

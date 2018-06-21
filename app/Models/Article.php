@@ -32,6 +32,14 @@ class Article extends Model
 		return $this->belongsTo('App\\Models\\Cate','cate_id','id');
 	}
 
+    /**
+     * 关联评论
+     * @return [type] [description]
+     */
+    public function comments(){
+        return $this->hasMany('App\\Models\\Comment','article_id','id');
+    }
+
 	//文章添加处理
     public function register($data){
     	$rule = [

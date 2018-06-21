@@ -90,6 +90,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 		//评论删除
 		Route::match(['post'],'commentdel','Comment@commentdel');
 
+		//系统设置、修改
+		Route::match(['get','post'],'systeminfo','System@systeminfo');
+
 	});
 
 	

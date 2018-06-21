@@ -24,6 +24,14 @@ class Member extends Model
         return $this->hasMany('App\\Models\\Article','member_id','id');
     }
 
+    /**
+     * 关联到评论表
+     * @return [type] [description]
+     */
+    public function comments(){
+        return $this->hasMany('App\\Models\\Comment','member_id','id');
+    }
+
 	//会员注册处理
     public function register($data){
     	$rule = [

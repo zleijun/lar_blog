@@ -78,8 +78,12 @@ class Coulmn extends Controller
     public function catedel(){
     	request()->isMethod('post')?true:exit;
 
-    	$resule = Cate::with('articles')->find(request('id'));
+    	$resule = Cate::with('articles','articles.comments')->find(request('id'));
         foreach ($resule->articles as $vo) {
+            
+            foreach ($vo->comments as $value) {
+                $value->delete();
+            }
             $vo->delete();
         }
     	$res = $resule->delete();

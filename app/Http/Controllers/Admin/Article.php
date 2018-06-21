@@ -92,12 +92,15 @@ class Article extends Controller
     public function articleel(){
     	request()->isMethod('post')?true:exit;
 
-    	$resule = ArticleModel::find(request('id'));
-    	$resule->delete();
-    	if($resule){
+    	$resule = ArticleModel::with('comments')->find(request('id'));
+        foreach ($resule->comments as $value) {
+            $value->delete();
+        }
+    	$res = $resule->delete();
+    	if($res){
 			$msg = [
 				'code'=>1,
-				'msg'=>'修改成功',
+				'msg'=>'删除成功',
 			];
 		}else{
 			$msg = [
