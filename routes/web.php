@@ -82,15 +82,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 		Route::match(['post'],'catedel','Coulmn@catedel');
 
 
-		//栏目列表
+		//文章列表
 		Route::match(['get'],'articles','Article@articles');
-		//栏目添加
+		//文章添加
 		Route::match(['get','post'],'addarticle','Article@addarticle');
-		//栏目修改
-		Route::match(['get','post'],'cateedit/{id?}','Article@articleedit');
-		//栏目删除
+		//文章修改
+		Route::match(['get','post'],'article/{id?}','Article@articleedit');
+		//文章删除
 		Route::match(['post'],'articledel','Article@articleel');
-		//上下架修改
+		//文章上下架修改
 		Route::match(['post'],'articlestate','Article@artstatus');
 		//是否推荐
 		Route::match(['post'],'articletop','Article@articletop');

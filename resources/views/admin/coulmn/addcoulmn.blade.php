@@ -33,7 +33,7 @@
                                 <label for="catename" class="col-sm-2 control-label no-padding-right">栏目排序</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="sort" placeholder="请输入栏目排序" />
-                                    <span class="help-block">数字越大越靠后</span>
+                                    <span class="help-block">数字越小越靠后</span>
                                 </div>
                             </div>
                             <div class="form-group">

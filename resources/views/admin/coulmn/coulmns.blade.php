@@ -19,7 +19,7 @@
         		<div class="col-xs-12">
         			<div class="widget">
         				<div class="widget-header">
-        					<span class="widget-caption">会员列表</span>
+        					<span class="widget-caption">栏目列表</span>
         					<div class="widget-buttons">
         						{!!strTostr($catelists->links())!!}
         					</div>

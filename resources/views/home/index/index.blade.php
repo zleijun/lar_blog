@@ -1,36 +1,5 @@
 @include('home.public.head')
-	<div class="container">
-		<div class="navbar-header">
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menu">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="#" class="navbar-brand">梦中程序员</a>
-		</div>
-		<div class="navbar-menu collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="#">首页</a></li>
-				<li><a href="#">PHP</a></li>
-				<li><a href="#">ThinkPHP</a></li>
-				<li><a href="#">Laravel</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">登录</a></li>
-				<li><a href="#">注册</a></li>
-				<li><a href="#">投稿</a></li>
-			</ul>
-			<form action="#" class="navbar-form navbar-right">
-				<div class="form-group">
-					<input type="text" class="form-control input-sm" id="search" name="search" placeholder="搜索" />
-				</div>
-				<div class="form-group">
-					<button class="btn btn-default btn-sm">搜索</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</nav>
+
 <div class="container">
 	<div class="jumbotron">
 		<h1 class="animated fadeInDown">梦中程序员！</h1>
