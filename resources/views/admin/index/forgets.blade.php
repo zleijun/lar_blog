@@ -64,7 +64,11 @@
             themefifthcolor = getThemeColorFromCss('themefifthcolor');
 
         });
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         //获取验证码
         $('#getCodes').click(function(){
         	$.ajax({

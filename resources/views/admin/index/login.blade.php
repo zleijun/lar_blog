@@ -58,7 +58,11 @@
             themefifthcolor = getThemeColorFromCss('themefifthcolor');
 
         });
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         //登录AJAX
         function checkForm(){
         	$.ajax({
