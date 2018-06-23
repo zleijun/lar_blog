@@ -24,7 +24,7 @@
 
 			</div>
 			<nav class="">
-				{{$articlesl->links()}}
+				{{$articlesl->appends(['searchs' => $searchs])->links()}}
 			</nav>
 		</div>
 		@include('home.public.toparticle')

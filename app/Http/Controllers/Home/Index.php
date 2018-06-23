@@ -38,8 +38,10 @@ class Index extends Controller
      * @return [type] [description]
      */
     public function artinfo(){
+        $id = request('id');
 
-    	$articlesinfos = Article::with('members:id,nickname','comments')->find(request('id'));
+        Article::where(['id'=>$id])->increment('click');
+    	$articlesinfos = Article::with('members:id,nickname','comments')->find($id);
 
     	$viewData = [
     		'articlesinfos'=>$articlesinfos,
@@ -128,6 +130,8 @@ class Index extends Controller
             $CommentModel = new Comment();
             $resule = $CommentModel->addComment($data);
             if($resule['code']){
+
+                Article::where(['id'=>$data['article_id']])->increment('comm_num');
                 $msg = [
                     'code'=>1,
                     'msg'=>'操作成功'
@@ -151,7 +155,7 @@ class Index extends Controller
         $searchs = request('search');
         $where['status'] = '1';
         //文章列表
-        $articleslist = Article::with('members:id,nickname')->orderBy('created_at','desc')->where($where)->where('title','like','%'.$searchs.'%')->paginate(15);
+        $articleslist = Article::with('members:id,nickname')->orderBy('created_at','desc')->where($where)->where('title','like','%'.$searchs.'%')->paginate(10);
         
         $viewData = [
             'articlesl'=>$articleslist,

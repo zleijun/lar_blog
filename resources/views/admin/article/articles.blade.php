@@ -110,7 +110,7 @@
                     var datas = "id="+userid+"&status="+userStats;
                 }
 				$.ajax({
-	        		url:"{{url('admin/article')}}",
+	        		url:"{{url('admin/articlestate')}}",
 	        		type:'post',
 	        		data:datas,
 	        		dataType:'json',

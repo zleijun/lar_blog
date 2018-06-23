@@ -97,7 +97,7 @@ class Admin extends Controller
     	if($resule){
 			$msg = [
 				'code'=>1,
-				'msg'=>'修改成功',
+				'msg'=>'删除成功',
 			];
 		}else{
 			$msg = [

@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="jumbotron">
 		<h1 class="animated fadeInDown">Geeker程序员！</h1>
-		<p class="animated shake">此系统是一个教学级博客系统，目前使用Laravel5.6框架开发一个，网站暂时只提供博文浏览功能，视频功能、留言功能、投稿功能、收益功能、推荐功能稍后开放。</p>
+		<p class="animated shake">此系统是一个教学级博客系统，目前使用Laravel5.6框架开发一个，主要用于学习、练手。Github：https://github.com/zleijun/lar_blog.git。可自行下载源码以及数据库。</p>
 	</div>
 	<div class="row">
 		<div class="col-sm-12 col-md-8">
