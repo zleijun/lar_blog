@@ -29,9 +29,8 @@
 					@endforeach
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">登录</a></li>
-					<li><a href="#">注册</a></li>
-					<li><a href="#">投稿</a></li>
+					<li><a href="{{url('user_logins')}}">登录</a></li>
+					<li><a href="{{url('registers')}}">注册</a></li>
 				</ul>
 				<form action="#" class="navbar-form navbar-right">
 					<div class="form-group">

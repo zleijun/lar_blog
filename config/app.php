@@ -161,6 +161,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * 自定义服务，注册、登录验证码
+         */
+        // Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
+
     ],
 
     /*

@@ -27,6 +27,13 @@ Route::group(['namespace'=>'Home'],function(){
 	Route::match(['get'],'index/{id?}','Index@index');
 	//文章详情
 	Route::match(['get'],'artinfo/{id}','Index@artinfo');
+	//用户注册
+	Route::match(['get','post'],'registers','Index@userregister');
+	//用户登录
+	Route::match(['get','post'],'user_logins','Index@user_logins');
+
+	//文章的评论添加
+	Route::match(['post'],'addcomments','Index@addcomments');
 
 });
 

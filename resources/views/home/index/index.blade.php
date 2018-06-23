@@ -13,7 +13,7 @@
 				
 				@foreach($articlesl as $ao)
 					<div class="article-list-item">
-						<a href="#" class="title">{{$ao->title}}</a>
+						<a href="{{url('artinfo',['id'=>$ao->id])}}" class="title">{{$ao->title}}</a>
 						<div class="info">
 							<span class="author">作者：{{$ao->members->nickname}}</span>-
 							<span class="time">发布时间：{{$ao->created_at}}</span>-
@@ -37,17 +37,7 @@
 				{{$articlesl->links()}}
 			</nav>
 		</div>
-		<div class="col-sm-12 col-md-4">
-			<div class="page-header h3">推荐文章</div>
-			<div class="topic-list">
-				@foreach($toparticles as $vs)
-					<div class="topic-list-item">
-						<a href="{{url('artinfo')}}" class="title">{{$vs->title}}</a>
-					</div>
-				@endforeach
-
-			</div>
-		</div>
+		@include('home.public.toparticle')
 	</div>
 </div>
 @include('home.public.footer')
