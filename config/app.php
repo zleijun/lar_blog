@@ -164,7 +164,7 @@ return [
         /**
          * 自定义服务，注册、登录验证码
          */
-        // Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
+        Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
 
     ],
 

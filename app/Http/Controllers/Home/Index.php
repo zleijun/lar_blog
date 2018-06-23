@@ -54,14 +54,14 @@ class Index extends Controller
      */
     public function userregister(){
     	if(request()->isMethod('post')){
-    		$data = request()->only('username','password','nickname','email','compassword');
+    		$data = request()->only('username','password','nickname','email','compassword','verify');
     		$MemberModel = new Member();
     		$resule = $MemberModel->register($data);
     		if($resule['code']){
     			$msg = [
     				'code'=>1,
     				'msg'=>'注册成功',
-    				'url'=>url('home/user_logins'),
+    				'url'=>url('user_logins'),
     			];
     		}else{
     			$msg = [

@@ -27,12 +27,13 @@
 					<label for="verify" class="control-label">验证码</label>
 					<div class="input-group">
 						<input type="text" class="form-control" id="verify" name="verify" placeholder="验证码" />
-						<span class="input-group-addon">123</span>
+						<span class="input-group-addon">@captcha</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary btn-block" id="user_register" type="button" value="注册">
 				</div>
+				@csrf
 			</form>
 		</div>
 		<div class="bottom center-block animated fadeInUp">
@@ -42,35 +43,39 @@
 	<script src="/static/home/js/jquery-3.3.1.min.js"></script>
 	<script src="/static/home/js/bootstrap.min.js"></script>
 	<script src="/static/lib/layer/layer.js"></script>
-	<script src="/static/admin/js/beyond.js"></script>
 	<script type="text/javascript">
-	$(function(){
-		$("#user_register").click(function(){
-			$.ajax({
-        		url:"{{url('home/registers')}}",
-        		type:'post',
-        		data:$('form').serialize(),
-        		dataType:'json',
-        		success:function(data){
-        			if(data.code == 1){
-        				layer.msg(data.msg,{
-        					icon:6,
-        					time:2000
-        				},function(){
-        					location.href = data.url;
-        				});
-        			}else{
-        				layer.open({
-        					title:'注册失败',
-        					content:data.msg,
-        					icon:5,
-        					anim:6
-        				});
-        			}
-        		}
-        	});
+		$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
 		});
-	});
+		$(function(){
+			$("#user_register").click(function(){
+				$.ajax({
+	        		url:"{{url('registers')}}",
+	        		type:'post',
+	        		data:$('form').serialize(),
+	        		dataType:'json',
+	        		success:function(data){
+	        			if(data.code == 1){
+	        				layer.msg(data.msg,{
+	        					icon:6,
+	        					time:2000
+	        				},function(){
+	        					location.href = data.url;
+	        				});
+	        			}else{
+	        				layer.open({
+	        					title:'注册失败',
+	        					content:data.msg,
+	        					icon:5,
+	        					anim:6
+	        				});
+	        			}
+	        		}
+	        	});
+			});
+		});
 </script>
 </body>
 </html>

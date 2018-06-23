@@ -32,7 +32,11 @@ class Member extends Model
         return $this->hasMany('App\\Models\\Comment','member_id','id');
     }
 
-	//会员注册处理
+	/**
+     * 注册会员处理
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function register($data){
     	$rule = [
     		'username'=>'bail|required|unique:admins|max:50',
@@ -55,6 +59,12 @@ class Member extends Model
     		'compassword.required'=>'请填写确认密码',
     		'compassword.same'=>'两次密码不相同'
     	];
+        if(isset($data['verify'])){
+            //当有验证码的时候
+            $rule['verify']='required|captcha';
+            $msg['verify.required']='请填写验证码';
+            $msg['verify.captcha']='验证码不正确';
+        }
 
     	$validator = Validator::make($data,$rule,$msg);
     	if($validator->fails()){
@@ -62,8 +72,6 @@ class Member extends Model
     		$data = ['code'=>0,'msg'=>$validator->errors()->first()];
     	}else{
 	    	//返回添加数据相应ID
-	    	// unset($data['compassword']);
-	    	// $result = $this->insertGetId($data);
 	    	$result = $this->create($data);
 	    	if($result){
     			$data = ['code'=>1];
@@ -75,7 +83,12 @@ class Member extends Model
 		return $data;  
     }
 
-    //会员信息修改
+
+    /**
+     * 会员信息修改
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function editinfo($data){
         $rule = [
             'id'=>'required',
@@ -112,7 +125,11 @@ class Member extends Model
         return $data;
     }
 
-    //会员登录处理
+    /**
+     * 会员登录处理
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function login($data){
         $rule = [
             'username'=>'bail|required',
