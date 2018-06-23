@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12 col-md-8">
-			<div class="page-header h3">{{$catename?$catename:'列表'}}</div>
+			<div class="page-header h3">{{$searchs?$searchs:'列表'}}</div>
 			<div class="article-list">
 				
 				@foreach($articlesl as $ao)

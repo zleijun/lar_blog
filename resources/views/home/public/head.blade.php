@@ -4,8 +4,9 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<title>博客-程序员学习</title>
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 	<link rel="stylesheet" href="/static/home/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/static/home/css/animate.css" />
 	<link rel="stylesheet" href="/static/home/css/index.css" />
@@ -29,10 +30,15 @@
 					@endforeach
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="{{url('user_logins')}}">登录</a></li>
-					<li><a href="{{url('registers')}}">注册</a></li>
+					@if(session()->has('user'))
+						<li><a href="{{url('user_logins')}}">{{session('user.nickname')}}</a></li>
+						<li><a href="{{url('userOut')}}">退出</a></li>
+					@else
+						<li><a href="{{url('user_logins')}}">登录</a></li>
+						<li><a href="{{url('registers')}}">注册</a></li>
+					@endif
 				</ul>
-				<form action="#" class="navbar-form navbar-right">
+				<form action="{{url('searchs')}}" method="get" class="navbar-form navbar-right">
 					<div class="form-group">
 						<input type="text" class="form-control input-sm" id="search" name="search" placeholder="搜索" />
 					</div>

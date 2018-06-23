@@ -20,10 +20,12 @@
 					<div class="comment-content">
 						<form action="#">
 							<div class="form-group">
-								<textarea class="form-control" id="comment" name="comment" rows="5" cols=""></textarea>
+								<input type="hidden" name="article_id" value="{{$articlesinfos->id}}">
+								<input type="hidden" name="member_id" value="{{$articlesinfos->member_id}}">
+								<textarea class="form-control" id="comment" name="content" rows="5" cols=""></textarea>
 							</div>
 							<div class="form-group pull-right">
-								<button class="btn btn-primary">评论（请认真评论）</button>
+								<input type="button" value="评论（请认真评论）" id="add_comments" class="btn btn-primary">
 							</div>
 						</form>
 					</div>
@@ -44,3 +46,30 @@
 	</div>
 
 @include('home.public.footer')
+<script type="text/javascript">
+	$("#add_comments").click(function(){
+		$.ajax({
+    		url:"{{url('addcomments')}}",
+    		type:'post',
+    		data:$('form').serialize(),
+    		dataType:'json',
+    		success:function(data){
+    			if(data.code == 1){
+    				layer.msg(data.msg,{
+    					icon:6,
+    					time:2000
+    				},function(){
+    					window.location.reload();
+    				});
+    			}else{
+    				layer.open({
+    					title:'登录失败',
+    					content:data.msg,
+    					icon:5,
+    					anim:6
+    				});
+    			}
+    		}
+    	});
+	});
+</script>

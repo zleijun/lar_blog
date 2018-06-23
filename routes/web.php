@@ -31,10 +31,18 @@ Route::group(['namespace'=>'Home'],function(){
 	Route::match(['get','post'],'registers','Index@userregister');
 	//用户登录
 	Route::match(['get','post'],'user_logins','Index@user_logins');
+	//导航搜索
+	Route::match(['get','post'],'searchs','Index@searchs');
+
+
+	//前台退出
+	Route::get('userOut', function () {
+		session()->flush();
+		return redirect('index');
+	});
 
 	//文章的评论添加
 	Route::match(['post'],'addcomments','Index@addcomments');
-
 });
 
 //后台分组 并且加 前缀amdin

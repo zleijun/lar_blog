@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Cate;
 use App\Models\Member;
+use App\Models\Comment;
 use DB;
 class Index extends Controller
 {
@@ -15,7 +16,6 @@ class Index extends Controller
 	 * @return [type] [description]
 	 */
     public function index(){
-
     	$where['status'] = '1';
     	$catename = [];
     	if(request('id') ){
@@ -82,6 +82,82 @@ class Index extends Controller
      * @return [type] [description]
      */
     public function user_logins(){
+        if(request()->isMethod('post')){
+            $data = [
+                'username'=>request('username'),
+                'password'=>request('password'),
+                'verify'=>request('verify')
+            ];
+            $MemberModel = new Member();
+            $resule = $MemberModel->login($data);
+            if($resule['code']){
+                $msg = [
+                    'code'=>1,
+                    'msg'=>'登录成功',
+                    'url'=>url('index'),
+                ];
+            }else{
+                $msg = [
+                    'code'=>0,
+                    'msg'=>$resule['msg'],
+                    'url'=>'',
+                ];
+            }
+
+            return $msg;
+        }
+
+        //如果已经登录了则跳转
+        if(session()->has('home')){
+            return redirect('index');
+        }
     	return view('home.index.logins');
+    }
+
+    /**
+     * 文章添加评论
+     * @return [type] [description]
+     */
+    public function addcomments(){
+        if(request()->isMethod('post')){
+            $data = [
+                'article_id'=>request('article_id'),
+                'member_id'=>request('member_id'),
+                'content'=>request('content'),
+            ];
+            $CommentModel = new Comment();
+            $resule = $CommentModel->addComment($data);
+            if($resule['code']){
+                $msg = [
+                    'code'=>1,
+                    'msg'=>'操作成功'
+                ];
+            }else{
+                $msg = [
+                    'code'=>0,
+                    'msg'=>$resule['msg']
+                ];
+            }
+
+            return $msg;
+        }
+    }
+
+    /**
+     * 导航上的搜索
+     * @return [type] [description]
+     */
+    public function searchs(){
+        $searchs = request('search');
+        $where['status'] = '1';
+        //文章列表
+        $articleslist = Article::with('members:id,nickname')->orderBy('created_at','desc')->where($where)->where('title','like','%'.$searchs.'%')->paginate(15);
+        
+        $viewData = [
+            'articlesl'=>$articleslist,
+            'searchs'=>$searchs
+        ];
+
+        return view('home.index.searchs',$viewData);
     }
 }

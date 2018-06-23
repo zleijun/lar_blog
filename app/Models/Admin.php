@@ -16,7 +16,11 @@ class Admin extends Model
 	//表示这些字段存时间戳的
 	protected $dates = ['created_at','updated_at','deleted_at'];
 
-    //管理员登录处理
+    /**
+     * 管理员登录处理
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function login($data){
     	$rule = [
     		'username'=>'bail|required',

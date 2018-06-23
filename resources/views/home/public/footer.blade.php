@@ -6,6 +6,12 @@
 	<script src="/static/home/js/bootstrap.min.js"></script>
 	<script src="/static/lib/layer/layer.js"></script>
 	<!--Beyond Scripts-->
-	<script src="/static/admin/js/beyond.js"></script>
+	<script type="text/javascript">
+		$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
+		});
+	</script>
 </body>
 </html>

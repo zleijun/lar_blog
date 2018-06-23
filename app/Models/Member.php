@@ -140,12 +140,20 @@ class Member extends Model
             'username.required'=>'请填写账户',
             'password.required'=>'请填写密码'
         ];
-
+        if(isset($data['verify'])){
+            //当有验证码的时候
+            $rule['verify']='required|captcha';
+            $msg['verify.required']='请填写验证码';
+            $msg['verify.captcha']='验证码不正确';
+        }
         $validator = Validator::make($data,$rule,$msg);
         if($validator->fails()){
             //验证失败
             $data = ['code'=>0,'msg'=>$validator->errors()->first()];
         }else{
+            if(isset($data['verify'])){
+                unset($data['verify']);
+            }
             //验证通过
             $result = $this->where($data)->first();
             if($result){
@@ -156,7 +164,7 @@ class Member extends Model
                         'is_super'=>$result['is_super'],
                         'email'=>$result['email']
                     ];
-                    session(['admin'=>$sessionUser]);
+                    session(['user'=>$sessionUser]);
 
                     $data = ['code'=>1];
                 }else{
