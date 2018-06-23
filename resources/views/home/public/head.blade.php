@@ -23,8 +23,9 @@
 			</div>
 			<div class="navbar-menu collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-left">
+					<li><a href="{{url('index')}}">首页</a></li>
 					@foreach($catalists as $ko)
-						<li><a href="javascript:;">{{$ko->catename}}</a></li>
+						<li><a href="{{url('index',['id'=>$ko->id])}}">{{$ko->catename}}</a></li>
 					@endforeach
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

@@ -70,7 +70,7 @@
         										<a href="#" class="btn btn-success btn-xs user_datas" state-type='2' user-status="{{$vo->status}}">上架</a>
         									@endif
 
-        									<a href="{{url('admin/cateedit',['id'=>$vo->id])}}" class="btn btn-azure btn-xs">编辑</a>
+        									<a href="{{url('admin/article',['id'=>$vo->id])}}" class="btn btn-azure btn-xs">编辑</a>
         									<a href="javascript:;" class="btn btn-danger btn-xs article-del">删除</a>
         								</td>
         							</tr>
@@ -110,7 +110,7 @@
                     var datas = "id="+userid+"&status="+userStats;
                 }
 				$.ajax({
-	        		url:"{{url('admin/articlestate')}}",
+	        		url:"{{url('admin/article')}}",
 	        		type:'post',
 	        		data:datas,
 	        		dataType:'json',

@@ -94,7 +94,7 @@
 		$("#article_add").click(function(){
 			// console.log($('form').serialize());
 			$.ajax({
-        		url:"{{url('admin/cateedit')}}",
+        		url:"{{url('admin/article')}}",
         		type:'post',
         		data:$('form').serialize(),
         		dataType:'json',

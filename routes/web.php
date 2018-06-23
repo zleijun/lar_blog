@@ -24,8 +24,9 @@ Route::any('/','Admin\Index@login');
 Route::group(['namespace'=>'Home'],function(){
 
 	//前台首页
-	Route::match(['get'],'index','Index@index');
-
+	Route::match(['get'],'index/{id?}','Index@index');
+	//文章详情
+	Route::match(['get'],'artinfo/{id}','Index@artinfo');
 
 });
 
