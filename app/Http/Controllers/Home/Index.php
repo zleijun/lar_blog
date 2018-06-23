@@ -24,7 +24,7 @@ class Index extends Controller
     	}
 
     	//文章列表
-    	$articleslist = Article::with('members:id,nickname')->orderBy('created_at','desc')->where($where)->paginate(15);
+    	$articleslist = Article::with('members:id,nickname')->orderBy('created_at','desc')->where($where)->paginate(10);
     	$viewData = [
     		'articlesl'=>$articleslist,
     		'catename'=>$catename
