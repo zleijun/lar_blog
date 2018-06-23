@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>博客-个人管理后台</title>
     <link rel="shortcut icon" href="/static/admin/img/logo.jpg" type="image/x-icon">
     <link href="/static/admin/css/bootstrap.min.css" rel="stylesheet" />
@@ -13,7 +14,7 @@
 </head>
 <body>
     <div class="login-container">
-        <form action="" onsubmit="return checkForm()">
+        <form action="">
         	<div class="loginbox bg-white">
 	            <div class="loginbox-title">博客-个人管理后台</div>
 	            
@@ -30,7 +31,7 @@
 	                <a href="{{url('admin/forget')}}">忘记密码?</a>
 	            </div>
 	            <div class="loginbox-submit">
-	                <input type="submit" class="btn btn-primary btn-block" value="登录">
+	                <input type="button" class="btn btn-primary btn-block" id="user_logins" value="登录">
 	            </div>
 	            <div class="loginbox-signup">
 	                <a href="{{url('admin/register')}}">注册账户</a>
@@ -58,39 +59,38 @@
             themefifthcolor = getThemeColorFromCss('themefifthcolor');
 
         });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        //登录AJAX
-        function checkForm(){
-        	$.ajax({
-        		url:"{{url('admin/login_ins')}}",
-        		type:'post',
-        		data:$('form').serialize(),
-        		dataType:'json',
-        		success:function(data){
-        			if(data.code == 1){
-        				layer.msg(data.msg,{
-        					icon:6,
-        					time:2000
-        				},function(){
-        					location.href = data.url;
-        				});
-        			}else{
-        				layer.open({
-        					title:'登录失败',
-        					content:data.msg,
-        					icon:5,
-        					anim:6
-        				});
-        			}
-        		}
-        	});
 
-        	return false;
-        }
+        $("#user_logins").click(function(){
+            $.ajax({
+                url:"{{url('admin/login_ins')}}",
+                type:'post',
+                data:$('form').serialize(),
+                dataType:'json',
+                success:function(data){
+                    if(data.code == 1){
+                        layer.msg(data.msg,{
+                            icon:6,
+                            time:2000
+                        },function(){
+                            location.href = data.url;
+                        });
+                    }else{
+                        layer.open({
+                            title:'登录失败',
+                            content:data.msg,
+                            icon:5,
+                            anim:6
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 <!--  /Body -->
