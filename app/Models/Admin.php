@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Validator;
 
 class Admin extends Model
 {
@@ -32,7 +31,7 @@ class Admin extends Model
     		'password.required'=>'请填写密码'
     	];
 
-    	$validator = Validator::make($data,$rule,$msg);
+    	$validator = validator($data,$rule,$msg);
     	if($validator->fails()){
     		//验证失败
     		$data = ['code'=>0,'msg'=>$validator->errors()->first()];
