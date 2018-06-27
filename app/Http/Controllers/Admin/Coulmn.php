@@ -11,7 +11,7 @@ class Coulmn extends Controller
     //栏目列表
     public function coulmns(){
     	$cataModel = new Cate();
-    	$catelists = Cate::orderBy('sort','asc')->paginate(15);
+    	$catelists = Cate::select(['id','catename','sort','created_at','updated_at','deleted_at'])->orderBy('sort','asc')->paginate(15);
     	$viewData = [
     		'catelists'=>$catelists
     	];
