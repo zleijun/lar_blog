@@ -1,5 +1,8 @@
 	<div class="footer">
-		<p>Copyright 2018 <a href="http://www.zljun.cn">{{$systeminfo->copyright}}</a> All Rights Reserved</p>
+		 <a target="_blank" href="{{url('admin/login_ins')}}">管理员后台登录
+	</div>
+	<div class="footer">
+		Copyright 2018 <p><a target="_blank" href="http://www.miitbeian.gov.cn">{{$systeminfo->copyright}}</a></p> All Rights Reserved
 	</div>
 	
 	<script src="/static/home/js/jquery-3.3.1.min.js"></script>

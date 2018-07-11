@@ -17,7 +17,7 @@
 // });
 
 //设置系统默认首页
-Route::any('/','Admin\Index@login');
+Route::any('/','Home\Index@index');
 
 
 //前台home

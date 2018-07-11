@@ -31,9 +31,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="catename" class="col-sm-2 control-label no-padding-right">网站版权</label>
+                                <label for="catename" class="col-sm-2 control-label no-padding-right">备案号</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="copyright" value="{{$systeminfo->copyright}}" placeholder="请输入网站版权" />
+                                    <input type="text" class="form-control" name="copyright" value="{{$systeminfo->copyright}}" placeholder="请输入备案号" />
                                 </div>
                             </div>
                             <div class="form-group">
