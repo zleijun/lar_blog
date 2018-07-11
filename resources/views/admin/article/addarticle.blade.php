@@ -64,7 +64,7 @@
     						</div>
     						<div class="form-group">
     							<label for="content" class="control-label col-sm-2">文章内容</label>
-    							<div class="col-sm-6">
+    							<div class="col-sm-9">
     								<textarea name="content" id="content" cols="40" rows="10" class=""></textarea>
     							</div>
     						</div>
@@ -88,7 +88,10 @@
 <script src="/static/lib/ueditor/ueditor.all.js"></script>
 <script type="text/javascript">
 	$(function(){
-		UE.getEditor('content');
+		var ue = UE.getEditor('content');
+        ue.ready(function() {
+            ue.setHeight(400);
+        })
 
 		$("#article_add").click(function(){
 			// console.log($('form').serialize());
