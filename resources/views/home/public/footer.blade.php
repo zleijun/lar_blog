@@ -10,6 +10,7 @@
 	<script src="/static/lib/layer/layer.js"></script>
 	<!--Beyond Scripts-->
 	<script type="text/javascript">
+		//全局加Token//
 		$.ajaxSetup({
 		    headers: {
 		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

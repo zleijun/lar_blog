@@ -7,9 +7,7 @@
             <li class="active">
                 <i class="fa fa-home"></i>&nbsp;会员管理
             </li>
-            <li>
-            	会员添加
-            </li>
+            <li>会员添加</li>
         </ul>
     </div>
     <!-- /Page Breadcrumb -->
