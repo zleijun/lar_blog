@@ -124,4 +124,4 @@ CREATE TABLE `lav_systems` (
 -- ----------------------------
 -- Records of lav_systems
 -- ----------------------------
-INSERT INTO `lav_systems` VALUES ('1', 'Geeker程序员爱好者', 'www.zljun.cn', '2018-06-21 21:13:26', '2018-06-23 10:49:34', null);
+INSERT INTO `lav_systems` VALUES ('1', 'Geeker程序员爱好者', 'git@github.com:zleijun/lar_blog.git', '2018-06-21 21:13:26', '2018-06-23 10:49:34', null);
