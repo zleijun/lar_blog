@@ -60,7 +60,11 @@ class Admin extends Model
 		return $data;    	
     }
 
-    //管理员注册处理
+    /**
+     * 管理员注册处理
+     * @param $data
+     * @return array
+     */
     public function register($data){
     	$rule = [
     		'username'=>'bail|required|unique:admins|max:50',

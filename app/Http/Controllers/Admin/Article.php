@@ -10,7 +10,10 @@ use App\Models\Article as ArticleModel;
 
 class Article extends Controller
 {
-    //会员列表
+    /**
+     * 会员列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function articles(){
     	$articlelists = ArticleModel::with('members:id,username','cates:id,catename')->orderBy('is_top','desc')->orderBy('status','desc')->orderBy('created_at','desc')->paginate(10);
 

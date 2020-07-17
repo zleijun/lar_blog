@@ -59,12 +59,12 @@ class Cate extends Model
 		return $data;  
     }
 
-    //栏目信息修改
+    /**
+     * 栏目信息修改
+     * @param $data
+     * @return array
+     */
     public function editinfo($data){
-    	// $rule = [
-    	// 	'catename'=>'bail|required|unique:cates|max:50',
-    	// 	'sort'=>'required|numeric',
-    	// ];
 
     	$rule = [
     		'catename' => [

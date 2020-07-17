@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Validator;
 class Member extends Model
 {
-    
+    //软删除
     use SoftDeletes;
 	//此为填充,表示哪些数据可添加到数据可
 	protected $fillable = ['username','password','nickname','email','deleted_at'];

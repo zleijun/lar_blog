@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 /**
- * phpEmail 发送邮件
+ * phpEmail 发送邮件（此处邮箱地址为配置）
  * @param  [type] $email   [接收人地址]
  * @param  [type] $content [邮件内容]
  * @param  [string] $subtitle [邮件主题]
@@ -13,7 +13,8 @@ use PHPMailer\PHPMailer\Exception;
  * @return [type]          [description]
  */
 function phpEmail($email,$content,$subtitle){
-    $mail = new PHPMailer(true);                              
+    $mail = new PHPMailer(true);
+    return False;
 	try {
 	    //邮箱服务器配置
     	//debug开启2,关闭0
@@ -23,13 +24,13 @@ function phpEmail($email,$content,$subtitle){
 	    //设置编码
 	    $mail->CharSet = 'utf-8';
 	    //邮箱服务器地址
-	    $mail->Host = 'smtp.163.com';
+	    $mail->Host = '';
 	    //权限
 	    $mail->SMTPAuth = true;
 	    //发送人邮箱
-	    $mail->Username = 'leruge@163.com';
+	    $mail->Username = '';
 	    //发送人密码
-	    $mail->Password = 'Ai157511';
+	    $mail->Password = '';
 	    //安全验证方式'ssl'或者'tls'
 	    $mail->SMTPSecure = 'ssl';
 	    //端口
@@ -60,6 +61,7 @@ function phpEmail($email,$content,$subtitle){
 	    return $mail->send();
 	} catch (Exception $e) {
 	    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+	    return False;
 	}
 }
 
