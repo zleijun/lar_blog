@@ -35,6 +35,7 @@ class Admin implements Rule
      */
     public function message()
     {
+        //这里返回错误信息
         return 'The validation error message.';
     }
 }

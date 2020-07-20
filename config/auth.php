@@ -65,6 +65,7 @@ return [
     */
 
     'providers' => [
+        //使用系统自带验证,不好用，还是喜欢自定义
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,

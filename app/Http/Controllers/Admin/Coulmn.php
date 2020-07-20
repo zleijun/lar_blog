@@ -8,9 +8,11 @@ use App\Models\Cate;
 
 class Coulmn extends Controller
 {
-    //栏目列表
+    /**
+     * 栏目列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function coulmns(){
-    	$cataModel = new Cate();
     	$catelists = Cate::select(['id','catename','sort','created_at','updated_at','deleted_at'])->orderBy('sort','asc')->paginate(15);
     	$viewData = [
     		'catelists'=>$catelists

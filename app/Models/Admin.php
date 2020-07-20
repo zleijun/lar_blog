@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 class Admin extends Model
 {
     use SoftDeletes;
@@ -87,7 +86,7 @@ class Admin extends Model
     		'compassword.required'=>'请填写确认密码',
     		'compassword.same'=>'两次密码不相同'
     	];
-
+        //验证器
     	$validator = Validator::make($data,$rule,$msg);
     	if($validator->fails()){
     		//验证失败

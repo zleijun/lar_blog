@@ -9,7 +9,10 @@ use Illuminate\Foundation\helpers;
 use App\Http\Controllers\Controller;
 class Index extends Controller
 {
-    //登录
+    /**
+     * 用户登录
+     * @return array|\Illuminate\Contracts\View\Factory|RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function login(){
     	if(request()->isMethod('post')){
 
@@ -47,7 +50,10 @@ class Index extends Controller
     	return view('admin.index.login');
     }
 
-    //管理员注册
+    /**
+     * 管理员注册
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function userreg(){
 
     	if(request()->isMethod('post')){

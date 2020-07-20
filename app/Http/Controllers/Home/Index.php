@@ -24,7 +24,9 @@ class Index extends Controller
     	}
 
     	//文章列表
-    	$articleslist = Article::with('members:id,nickname')->orderBy('created_at','desc')->where($where)->paginate(10);
+    	$articleslist = Article::with('members:id,nickname')
+                        ->orderBy('created_at','desc')
+                        ->where($where)->paginate(10);
     	$viewData = [
     		'articlesl'=>$articleslist,
     		'catename'=>$catename
@@ -39,8 +41,9 @@ class Index extends Controller
      */
     public function artinfo(){
         $id = request('id');
-
+        //自增
         Article::where(['id'=>$id])->increment('click');
+        
     	$articlesinfos = Article::with('members:id,nickname','comments')->find($id);
 
     	$viewData = [

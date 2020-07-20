@@ -24,7 +24,7 @@ class Comment extends Model
 	}
 
 	/**
-	 * 关联到文章表
+	 * 一对多，关联到文章表
 	 * @return [type] [description]
 	 */
 	public function articles(){
