@@ -43,7 +43,7 @@ class Index extends Controller
         $id = request('id');
         //自增
         Article::where(['id'=>$id])->increment('click');
-        
+
     	$articlesinfos = Article::with('members:id,nickname','comments')->find($id);
 
     	$viewData = [
